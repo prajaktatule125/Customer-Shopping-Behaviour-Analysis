@@ -86,18 +86,19 @@ where previous_purchases > 5
 group by subscription_status
 
 -- 10.  What is the revenue contribution of each age group? 
-SELECT 
+select 
     age_group,
-    SUM(purchase_amount) AS revenue_contribution
-FROM customer
-GROUP BY age_group
-ORDER BY revenue_contribution DESC;
+    sum(purchase_amount) as revenue_contribution
+from customer
+group by age_group
+order by revenue_contribution desc;
 
-SELECT 
+select
     age_group,
-    SUM(purchase_amount) AS revenue_contribution,
+    sum(purchase_amount) as revenue_contribution,
     ROUND(100.0 * SUM(purchase_amount) / SUM(SUM(purchase_amount)) OVER(), 2) AS percent_of_total
 FROM customer
 GROUP BY age_group
 ORDER BY revenue_contribution DESC;
+
 
